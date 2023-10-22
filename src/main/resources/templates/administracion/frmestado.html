@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout::head}">
+<body>
+<nav th:replace="~{layout::menu}" ></nav>
+<div class="card">
+    <div class="card-header">
+        Lista de Estados
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="estado: ${listarestados}">
+                <td th:text="${estado.idestado}"></td>
+                <td th:text="${estado.descestado}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
