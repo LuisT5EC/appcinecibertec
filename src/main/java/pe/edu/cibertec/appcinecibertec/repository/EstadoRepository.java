@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.appcinecibertec.model.bd.Estado;
 
 @Repository
-public interface EstadoRepository extends JpaRepository<Estado,
+public interface EstadoRepository extends JpaRepository <Estado,
         Integer> {
+
+
 }

@@ -7,6 +7,7 @@ import pe.edu.cibertec.appcinecibertec.repository.EstadoRepository;
 
 import java.util.List;
 
+
 @Service
 @AllArgsConstructor
 public class EstadoService {
@@ -21,8 +22,9 @@ public class EstadoService {
         return estadoRepository.save(estado) != null;
     }
 
-    public void eliminarEstado(Integer idestado){
+     public void eliminarEstado(Integer idestado){
         estadoRepository.deleteById(idestado);
+
     }
 
 }
