@@ -12,4 +12,5 @@ public class Estado {
     private Integer idestado;
     @Column(name = "descestado")
     private String descestado;
+
 }

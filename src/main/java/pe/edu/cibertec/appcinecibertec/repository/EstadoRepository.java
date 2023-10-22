@@ -8,4 +8,5 @@ import pe.edu.cibertec.appcinecibertec.model.bd.Estado;
 public interface EstadoRepository extends JpaRepository <Estado,
         Integer> {
 
+
 }

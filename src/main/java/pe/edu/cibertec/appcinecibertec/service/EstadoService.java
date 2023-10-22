@@ -1,10 +1,14 @@
 package pe.edu.cibertec.appcinecibertec.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import pe.edu.cibertec.appcinecibertec.model.bd.Estado;
 import pe.edu.cibertec.appcinecibertec.repository.EstadoRepository;
 
 import java.util.List;
+
+
+@Service
 @AllArgsConstructor
 public class EstadoService {
 
@@ -18,9 +22,9 @@ public class EstadoService {
         return estadoRepository.save(estado) != null;
     }
 
-    public boolean eliminarEstado(Integer idestado){
+     public void eliminarEstado(Integer idestado){
         estadoRepository.deleteById(idestado);
-        return false;
+
     }
 
 }
