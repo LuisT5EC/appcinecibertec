@@ -11,6 +11,55 @@ $(document).on("click", ".btnactualizar", function(){
     $("#hddidestado").val($(this).attr("data-idestado"));
 });
 
+$(document).on("click", "#btnguardar", function(){
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/administracion/estado/registrar",
+        data: JSON.stringify({
+            idestado: $("#hddidestado").val(),
+            descestado: $("#txtdescripcion").val()
+        }),
+        success: function(resultado){
+            if(resultado.respuesta){
+                listarEstados();
+            }
+            alert(resultado.mensaje);
+            $("#modalestado").modal("hide")
+        }
+
+    })
+});
+
+function listarEstados(){
+    $.ajax({
+        type: "GET",
+        url: "/administracion/estado/listar",
+        dataType: "json",
+        success: function(resultado){
+            $("#tblestado > tbody").html("");
+            $.each(resultado, function(index, value){
+                $("#tblestado > tbody").append("<tr>" +
+                    "<td>"+value.idestado+"</td>" +
+                    "<td>"+value.descestado+"</td>" +
+                    "<td>"+
+                    "<button type='button' class='btn btn-info btnactualizar'"+
+                    " data-idestado='"+value.idestado+"'"+
+                    " data-descestado='"+value.descestado+"'>"+
+                    "<i class='bi bi-pencil-square'></i>"+
+                    "</button></td>"+
+                    "<td>"+
+                    "<button type='button' class='btn btn-danger btneliminar'"+
+                    " data-idestado='"+value.idestado+"'"+
+                    " data-descestado='"+value.descestado+"'>"+
+                    "<i class='bi bi-pencil-square'></i>"+
+                    "</button></td></tr>");
+            })
+        }
+    })
+}
+
+
 $(document).on("click", ".btneliminar", function(){
     //alert("Hola estoy con JQUERY");
     $("#modalestado").modal("show");
