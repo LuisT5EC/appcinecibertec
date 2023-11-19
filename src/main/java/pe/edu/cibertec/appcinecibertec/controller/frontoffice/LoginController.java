@@ -27,4 +27,9 @@ public class LoginController {
         usuarioService.saveUser(usuario);
         return "frontoffice/auth/login";
     }
+
+    @GetMapping("/login-success")
+    public String loginsuccess(){
+        return "frontoffice/auth/dashboard";
+    }
 }

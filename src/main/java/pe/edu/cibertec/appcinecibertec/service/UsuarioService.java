@@ -26,6 +26,7 @@ public class UsuarioService {
                 bCryptPasswordEncoder.encode(usuario.getPassword())
         );
         Rol usuarioRol = rolRepository.findByNomrol("USER");
+        usuario.setActivo(true);
         usuario.setRoles(new HashSet<>(Arrays.asList(usuarioRol)));
         return usuarioRepository.save(usuario);
     }

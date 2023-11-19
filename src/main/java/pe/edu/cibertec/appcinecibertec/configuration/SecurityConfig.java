@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 import pe.edu.cibertec.appcinecibertec.service.DetalleUsuarioService;
 
 @Configuration
@@ -33,10 +34,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
         throws Exception{
-        httpSecurity
+        //Desabilitamos Cors con está intrucción
+        httpSecurity.csrf(csrf -> csrf.disable())
+                //Luego continua lo demás
                 .authorizeHttpRequests(
                         auth ->
                                 auth.requestMatchers("/auth/login",
+                                        "/**",
                                         "/auth/registrar",
                                         "/auth/guardarusuario",
                                         "/resources/**",
