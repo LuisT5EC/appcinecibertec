@@ -24,6 +24,7 @@ $(document).on("click", ".btnactualizar", function(){
     $("#txtasientos").val($(this).attr("data-asientos"));
     $("#hddidsala").val($(this).attr("data-idsala"));
     $("#cboestado").empty();
+    var idestado = $(this).attr("data-idestado");
     $.ajax({
                 type: "GET",
                 url: "/administracion/estado/listar",
@@ -33,6 +34,7 @@ $(document).on("click", ".btnactualizar", function(){
                         $("#cboestado").append(
                         `<option value="${value.idestado}">${value.descestado}</option>`)
                     });
+                    $("#cboestado").val(idestado);
                 }
             });
     $("#modalsala").modal("show");
@@ -59,3 +61,31 @@ $(document).on("click", "#btnguardar", function(){
 
     })
 });
+
+
+function listarSalas(){
+    $.ajax({
+        type: "GET",
+        url: "/administracion/sala/listar",
+        dataType: "json",
+        success: function(resultado){
+            $("#tblsala > tbody").html("");
+            $.each(resultado, function(index, value){
+                $("#tblsala > tbody").append("<tr>" +
+                    "<td>"+value.idsala+"</td>" +
+                    "<td>"+value.descsala+"</td>" +
+                    "<td>"+value.asientos+"</td>" +
+                    "<td>"+value.estado.descestado+"</td>" +
+                    "<td>"+
+                    "<button type='button' class='btn btn-info btnactualizar'"+
+                    " data-idsala='"+value.idsala+"'"+
+                    " data-descsala='"+value.descsala+"'"+
+                    " data-asientos='"+value.asientos+"'"+
+                    " data-idestado='"+value.estado.idestado+"'>"+
+                    "<i class='bi bi-pencil-square'></i>"+
+                    "</button></td>"+
+                    "</tr>");
+            })
+        }
+    })
+}
