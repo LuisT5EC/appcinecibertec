@@ -37,3 +37,25 @@ $(document).on("click", ".btnactualizar", function(){
             });
     $("#modalsala").modal("show");
 });
+
+$(document).on("click", "#btnguardar", function(){
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/administracion/sala/registrar",
+        data: JSON.stringify({
+            idsala: $("#hddidsala").val(),
+            descsala: $("#txtdescripcion").val(),
+            asientos: $("#txtasientos").val(),
+            idestado: $("#cboestado").val()
+        }),
+        success: function(resultado){
+            if(resultado.respuesta){
+                //listarEstados();
+            }
+            alert(resultado.mensaje);
+            $("#modalsala").modal("hide")
+        }
+
+    })
+});
